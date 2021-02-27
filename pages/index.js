@@ -1,65 +1,57 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React, {useEffect, useState} from "react";
 
-export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+export default function StarsGame () {
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+	const [count, setCount] = useState(0);
+	const [seconds, setSeconds] = useState(-1);
+	const [buttonTitle, setButtonTitle] = useState("Запуск");
+	const [remember, setRemember] = useState(0);
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
+	useEffect(() => {
+		const countSecs = setInterval(() => {
+			if (seconds >= 0) {
+				setSeconds(seconds + 1);
+			}
+			else if(remember !== 0){
+				setSeconds(remember + 1);
+			}
+		}, 1000)
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+		return () => clearInterval(countSecs)
+	}, [seconds]);
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+	let maxNumber = 5;
+	let randomNumber = Math.floor((Math.random() * maxNumber) + 1);
+	return (
+		<>
+			<div className="game-field">
+				<div className="star"
+					     onClick={() => setCount(count + 1)}>
+					<p>{randomNumber}</p>
+				</div>
+				</div>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+			<div className="game-info">
+				<div>Score{' '} {count}</div>
+				<div>Timer{' '} {remember !== 0 ? remember : (seconds >= 0 ? seconds : 0)}</div>
+			</div>
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+			<div className="game-interact">
+				<button onClick={() => {
+					setSeconds(remember === 0 ? 0 : remember);
+					setRemember(0);
+				}}>{buttonTitle}</button>
+				<button onClick={() => {
+					setRemember(seconds);
+					setSeconds(-1);
+					setButtonTitle("Продолжить")
+				}}>Пауза</button>
+				<button onClick={() => {
+					setCount(0);
+					setSeconds(0);
+					setRemember(0)
+				}}>Рестарт</button>
+			</div>
+		</>
+	)
 }

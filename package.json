@@ -8,8 +8,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "css-loader": "^5.1.0",
     "next": "10.0.7",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "react-native": "^0.63.4",
+    "styled-components": "^5.2.1"
+  },
+  "devDependencies": {
+    "style-loader": "^2.0.0"
   }
 }
