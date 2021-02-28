@@ -1,56 +1,63 @@
 import React, {useEffect, useState} from "react";
+import {Star} from "./Star";
+import {GameContext} from "../context/GameContext";
+import {useInterval} from "../utils/useInterval";
+import { v4 as uuidv4 } from 'uuid';
 
-export default function StarsGame () {
-
+export default function StarsGame() {
 	const [count, setCount] = useState(0);
-	const [seconds, setSeconds] = useState(-1);
+	const [seconds, setSeconds] = useState(0);
+	const [paused, setPaused] = useState(true);
 	const [buttonTitle, setButtonTitle] = useState("Запуск");
-	const [remember, setRemember] = useState(0);
+	const [stars, setStars] = useState([null, null, null]);
 
-	useEffect(() => {
-		const countSecs = setInterval(() => {
-			if (seconds >= 0) {
-				setSeconds(seconds + 1);
+	useInterval(() => {
+		if (!paused) {
+			if (stars.filter(Boolean).length < 3) {
+				const id = uuidv4();
+				const i = stars.findIndex(it => it === null);
+				const star = (<Star key={id} id={id} index={i}/>);
+				stars[i] = star;
+				setStars([...stars]);
 			}
-			else if(remember !== 0){
-				setSeconds(remember + 1);
-			}
-		}, 1000)
+		}
+	}, 1000);
 
-		return () => clearInterval(countSecs)
-	}, [seconds]);
+	useInterval(() => {
+		if (!paused) {
+			setSeconds(seconds + 1);
+		}
+	}, 1000);
 
-	let maxNumber = 5;
-	let randomNumber = Math.floor((Math.random() * maxNumber) + 1);
 	return (
 		<>
 			<div className="game-field">
-				<div className="star"
-					     onClick={() => setCount(count + 1)}>
-					<p>{randomNumber}</p>
-				</div>
-				</div>
+				<GameContext.Provider value={{paused, stars, setStars, setCount, count}}>
+					{stars}
+				</GameContext.Provider>
+			</div>
 
 			<div className="game-info">
-				<div>Score{' '} {count}</div>
-				<div>Timer{' '} {remember !== 0 ? remember : (seconds >= 0 ? seconds : 0)}</div>
+				<div>Таймер{' '} {seconds}</div>
+				<div>Текущая сумма{' '} {count}</div>
 			</div>
 
 			<div className="game-interact">
 				<button onClick={() => {
-					setSeconds(remember === 0 ? 0 : remember);
-					setRemember(0);
+					setPaused(false);
 				}}>{buttonTitle}</button>
 				<button onClick={() => {
-					setRemember(seconds);
-					setSeconds(-1);
-					setButtonTitle("Продолжить")
-				}}>Пауза</button>
+					setPaused(true);
+					setButtonTitle("Продолжить");
+				}}>Пауза
+				</button>
 				<button onClick={() => {
 					setCount(0);
 					setSeconds(0);
-					setRemember(0)
-				}}>Рестарт</button>
+					setPaused(false);
+					setStars([null, null, null]);
+				}}>Рестарт
+				</button>
 			</div>
 		</>
 	)

@@ -1,15 +1,7 @@
-@keyframes dropdown {
-	0% {
-		transform: translateY(-20vh);
-	}
-	100% {
-		transform: translateY(100vh);
-	}
-}
-
 *{
 	font-family: "Roboto", monospace;
 }
+
 html, body {
 	padding: 0;
 	margin: 0;
@@ -26,6 +18,7 @@ body{
 	background-size: 100%;
 }
 .star{
+	position: absolute;
 	background: url("/star.svg") no-repeat;
 	background-size: 100%;
 	width: 20%;
@@ -34,8 +27,8 @@ body{
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	animation: dropdown 15s infinite;
 }
+
 .star p{
 	margin: 0;
 	font-weight: bold;
@@ -43,18 +36,24 @@ body{
 .game-field{
 	height: 100vh;
 	width: 100vh;
+	position: relative;
+	/*background-color: burlywood;*/
+	/*opacity: 0.5;*/
 }
 .game-info{
 	display: flex;
 	flex-direction: column;
 	position: absolute;
-	right: 20%;
+	right: 15%;
 	top: 0;
-	width: 20vh;
+	width: 20vw;
 	height: 10vh;
 	justify-content: center;
 	align-items: center;
 	font-size: 30px;
+	color: #c8c8ca;
+	/*background-color: #4152ec;*/
+	/*opacity: 0.5;*/
 }
 
 .game-interact{
@@ -64,14 +63,26 @@ body{
 	right: 10px;
 	top: 0;
 	width: 40vh;
-	height: 100vh;
+	height: 100%;
 	justify-content: center;
 	align-items: center;
+	/*background-color: #a1de87;*/
+	/*opacity: 0.5;*/
 }
 button {
 	width: 200px;
 	height: 50px;
 	margin: 20px;
-	border-radius: 15px;
+	border-radius:15px;
+	border-top-style: hidden;
+	border-right-style: hidden;
+	border-left: solid 5px #c8c8ca;
+	border-bottom: solid 5px #c8c8ca;
 	font-size: 30px;
+}
+button:focus{
+	outline: none;
+}
+button:active {
+	transform: translateY(5px);
 }
