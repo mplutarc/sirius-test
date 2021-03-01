@@ -29,7 +29,6 @@ export const Star = (props: IStarProps) => {
         <StarStyle
             style={{
                 transform: `translateY(${height}vh) translateX(${props.index * 35}vh)`,
-                transition: "all 1s linear"
             }}
             className="star"
         >

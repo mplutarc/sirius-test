@@ -59,6 +59,5 @@ export const StarStyle = styled.div`
 	align-items: center;
 	justify-content: center;
 	font-weight: bold;
-	top: 0,
-	left: 0,
+    transition: all 1s linear;
 `;
