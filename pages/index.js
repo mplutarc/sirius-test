@@ -3,6 +3,7 @@ import {Star} from "./Star";
 import {GameContext} from "../context/GameContext";
 import {useInterval} from "../utils/useInterval";
 import { v4 as uuidv4 } from 'uuid';
+import {Button, GameField, GameInfo, GameInteract} from '../styles/styles'
 
 export default function StarsGame() {
 	const [count, setCount] = useState(0);
@@ -31,34 +32,35 @@ export default function StarsGame() {
 
 	return (
 		<>
-			<div className="game-field">
+			<GameField>
 				<GameContext.Provider value={{paused, stars, setStars, setCount, count}}>
 					{stars}
 				</GameContext.Provider>
-			</div>
+			</GameField>
 
-			<div className="game-info">
+			<GameInfo>
 				<div>Таймер{' '} {seconds}</div>
 				<div>Текущая сумма{' '} {count}</div>
-			</div>
+			</GameInfo>
 
-			<div className="game-interact">
-				<button onClick={() => {
+			<GameInteract>
+				<Button onClick={() => {
 					setPaused(false);
-				}}>{buttonTitle}</button>
-				<button onClick={() => {
+				}}>{buttonTitle}
+				</Button>
+				<Button onClick={() => {
 					setPaused(true);
 					setButtonTitle("Продолжить");
 				}}>Пауза
-				</button>
-				<button onClick={() => {
+				</Button>
+				<Button onClick={() => {
 					setCount(0);
 					setSeconds(0);
 					setPaused(false);
 					setStars([null, null, null]);
 				}}>Рестарт
-				</button>
-			</div>
+				</Button>
+			</GameInteract>
 		</>
 	)
 }

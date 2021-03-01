@@ -1,6 +1,7 @@
 import React, {useContext, useState} from "react";
 import {useInterval} from "../utils/useInterval";
 import {GameContext} from "../context/GameContext";
+import {StarStyle} from "../styles/styles";
 
 export interface IStarProps {
     index: number
@@ -25,17 +26,15 @@ export const Star = (props: IStarProps) => {
         }
     }, 1000);
     return (
-        <div
+        <StarStyle
             style={{
-                top: 0,
-                left: 0,
-                transform: `translateY(${height}vh) translateX(${props.index * 25}vh)`,
+                transform: `translateY(${height}vh) translateX(${props.index * 35}vh)`,
                 transition: "all 1s linear"
             }}
             className="star"
         >
             <p>{value}</p>
-        </div>
+        </StarStyle>
     );
 }
 
