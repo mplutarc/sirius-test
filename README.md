@@ -1,34 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Тестовое задания на позицию "Junior Front-End Developer"
 
-## Getting Started
+React js
 
-First, run the development server:
+Задание:\n
+  1. Создайте проект на основе фреймворка https://nextjs.org/ \n
+  2. Установите библиотеку https://emotion.sh/docs/styled
+  3. Сделайте верстку страницы со звездами по шаблону, используя React и styled-components
+  4. Используйте функциональные компоненты и TypeScript
+  5. Необходимо реализовать cледующий функционал:
+    5.0 Добавлить эффект падение звёзд (не больше трех одновременно) со случайными значениями (от "-5" до "5", без "0") и в случайных позициях (в зоне падения звезд).
+    5.1 Добавить кнопку запуска, паузы и рестарта игры. Если пользователь нажал на кнопку "пауза", то текст кнопки "запуск" меняется на "продолжить"
+    5.2 В правом верхнем углу должны быть реализованы "Таймер" и "Текущая сумма".
+    5.3 Таймер запускается в начале игры, останавливается, если нажать на кнопку "пауза", продолжает отсчет, если нажать кнопку "продолжить" и обновляется, если нажать на кнопку "рестарт".
+    5.4 "Текущая сумма" - Изначально "0". Изменится, когда звездочка достигнет нижнего края экрана и исчезнет:  например, если текущая сумма 3, а звездочка со значением -7, то итоговая сумма будет -4. Текущая сумма обновляется, если нажать на кнопку "рестарт».
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+https://www.figma.com/file/NkrufYEU9Yn9457SXzMmqo/Тестовое-задание-2021-02
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Скриншоты выполненного задания:
+![image](https://user-images.githubusercontent.com/47104132/121586329-36225400-ca3c-11eb-9fc7-38e502fd42b9.png)
+![image](https://user-images.githubusercontent.com/47104132/121586416-4fc39b80-ca3c-11eb-9235-d14e7d114139.png)
